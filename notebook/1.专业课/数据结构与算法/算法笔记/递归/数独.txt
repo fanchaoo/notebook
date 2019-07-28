@@ -1,0 +1,174 @@
+
+你一定听说过“数独”游戏。
+如【图1.png】，玩家需要根据9×9盘面上的已知数字，推理出所有剩余空格的数字，并满足每一行、每一列、每一个同色九宫内的数字均含1-9，不重复。
+
+数独的答案都是唯一的，所以，多个解也称为无解。
+
+本图的数字据说是芬兰数学家花了3个月的时间设计出来的较难的题目。但对会使用计算机编程的你来说，恐怕易如反掌了。
+
+本题的要求就是输入数独题目，程序输出数独的唯一解。我们保证所有已知数据的格式都是合法的，并且题目有唯一的解。
+
+格式要求，输入9行，每行9个字符，0代表未知，其它数字为已知。
+输出9行，每行9个数字表示数独的解。
+
+例如：
+输入（即图中题目）：
+005300000
+800000020
+070010500
+400005300
+010070006
+003200080
+060500009
+004000030
+000009700
+
+程序应该输出：
+145327698
+839654127
+672918543
+496185372
+218473956
+753296481
+367542819
+984761235
+521839764
+
+再例如，输入：
+800000000
+003600000
+070090200
+050007000
+000045700
+000100030
+001000068
+008500010
+090000400
+
+程序应该输出：
+812753649
+943682175
+675491283
+154237896
+369845721
+287169534
+521974368
+438526917
+796318452
+
+
+资源约定：
+峰值内存消耗（含虚拟机） < 256M
+CPU消耗  < 2000ms
+
+
+请严格按要求输出，不要画蛇添足地打印类似：“请您输入...” 的多余内容。
+
+所有代码放在同一个源文件中，调试通过后，拷贝提交该源码。
+注意：不要使用package语句。不要使用jdk1.7及以上版本的特性。
+注意：主类的名字必须是：Main，否则按无效代码;
+
+
+
+
+
+import java.util.Scanner;
+
+public class Main {
+
+	static int[][] d = new int[9][9];// 保存输入数独的数组1-9行，1-9列
+
+	// 输出二维数组
+	public static void print(int[][] a) {
+		for (int i = 0; i < a.length; i++) {
+			for (int j = 0; j < a[i].length; j++) {
+				System.out.print(a[i][j]);
+			}
+			System.out.println();
+		}
+	}
+
+	// 判断同一行，同一列
+	public static boolean judgeRowCol(int row, int col, int num) {
+		// 判断同一列
+		for (int i = 0; i < 9; i++) {
+			if (d[i][col] == num) {
+				return false;
+			}
+		}
+
+		// 判断同一行
+		for (int j = 0; j < 9; j++) {
+			if (d[row][j] == num) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	// 判断九宫格
+	public static boolean judgeZone(int row, int col, int num) {
+
+		int i, j;
+		if (row >= 0 && row <= 2) {
+			i = 0;
+		} else if (row >= 3 && row <= 5) {
+			i = 3;
+		} else {
+			i = 6;
+		}
+
+		if (col >= 0 && col <= 2) {
+			j = 0;
+		} else if (col >= 3 && col <= 5) {
+			j = 3;
+		} else {
+			j = 6;
+		}
+
+		for (int p = i; p <= i + 2; p++) {
+			for (int q = j; q <= j + 2; q++) {
+				if (d[p][q] == num) {
+					return false;
+				}
+			}
+		}
+
+		return true;
+	}
+
+	public static void f(int row, int col) {
+
+		if (row >= 9) {
+			print(d);
+			System.exit(0);
+		}
+
+		if (d[row][col] == 0) {
+			for (int i = 1; i <= 9; i++) {
+				if (judgeRowCol(row, col, i) && judgeZone(row, col, i)) {
+					d[row][col] = i;
+					f(row + (col + 1) / 9, (col + 1) % 9);
+				}
+			}
+			d[row][col] = 0;
+		} else {
+			f(row + (col + 1) / 9, (col + 1) % 9);
+		}
+	}
+
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		String s = new String();
+		for (int i = 0; i < 9; i++) {
+			s = input.nextLine();
+			for (int j = 0; j < 9; j++) {
+				d[i][j] = Integer.valueOf(s.charAt(j) + "");
+			}
+		}
+
+		f(0, 0);
+
+	}
+}

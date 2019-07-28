@@ -1,0 +1,32 @@
+ps
+
+ps aux				查看进程信息
+
+ps aux | grep bash		查看进程信息
+
+ps -ef | grep redis
+
+kill -l				查看各种信号
+
+kill -9 1234			杀死进程
+
+env				查看环境变量
+
+env | grep PATH			查看环境变量
+
+top				显示进程信息
+
+ifconfig			查看本机IP
+
+ping www.baudu.com -c 6		查看网络是否通畅
+
+nslookup www.baidu.com		查看域名对应的IP地址
+
+groupadd g1			添加组
+
+useradd -s /bin/bash -g g1 -d /home/fanchao -m fanchao		添加用户
+
+userdel -r fanchao		删除用户
+
+passwd fanchao			修改密码
+

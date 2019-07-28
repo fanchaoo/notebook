@@ -1,0 +1,123 @@
+1、第一种
+```
+import java.util.Arrays;
+
+public class Main {
+
+	
+	public static void main(String[] args) {
+		int[] a = new int[] { 1, 2, 3, 4 };
+		f(a, 0, a.length - 1);
+	}
+
+	public static void f(int[] a, int start, int end) {
+
+		if (start >= end) {
+			System.out.println(Arrays.toString(a));
+			return;
+		}
+
+		for (int i = start; i <= end; i++) {
+			int temp = a[start];
+			a[start] = a[i];
+			a[i] = temp;
+			f(a, start + 1, end);
+			temp = a[start];
+			a[start] = a[i];
+			a[i] = temp;
+		}
+	}
+}
+```
+第二种
+
+```
+import java.util.Arrays;
+
+public class Main {
+
+	public static void main(String[] args) {
+		int[] a = new int[4];
+		boolean[] vis = new boolean[5];
+		f(a, 0, vis);
+	}
+
+	public static void f(int[] a, int k, boolean[] vis) {
+
+		if (k >= a.length) {
+			System.out.println(Arrays.toString(a));
+		}
+
+		for (int i = 1; i <= a.length; i++) {
+			if (!vis[i]) {
+				a[k] = i;
+				vis[i] = true;
+				f(a, k + 1, vis);
+				vis[i] = false;
+			}
+		}
+	}
+}
+```
+第三种
+```
+import java.util.Arrays;
+
+public class Main {
+
+	public static void main(String[] args) {
+		int[] a = new int[4];
+		boolean[] vis = new boolean[4];
+		f(a, 1, vis);
+	}
+
+	public static void f(int[] a, int k, boolean[] vis) {
+
+		if (k > a.length) {
+			System.out.println(Arrays.toString(a));
+			return;
+		}
+
+		for (int i = 0; i < a.length; i++) {
+			if (!vis[i]) {
+				a[i] = k;
+				vis[i] = true;
+				f(a, k + 1, vis);
+				vis[i] = false;
+			}
+
+		}
+	}
+}
+```
+
+第四种
+
+```
+import java.util.Arrays;
+
+public class Main {
+
+	public static void main(String[] args) {
+		int[] a = new int[4];
+		f(a, 1);
+	}
+
+	public static void f(int[] a, int k) {
+
+		if (k > a.length) {
+			System.out.println(Arrays.toString(a));
+			return;
+		}
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] == 0) {
+				a[i] = k;
+				f(a, k + 1);
+				a[i] = 0;
+			}
+
+		}
+	}
+}
+```

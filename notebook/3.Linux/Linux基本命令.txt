@@ -1,0 +1,82 @@
+1、查看
+查看目录内容：ls -al，tree
+
+https://blog.csdn.net/zhuoya_/article/details/77418413
+
+查看文件内容：
+cat，more，less，head，tail
+
+tail -10 abc.log
+tail -f abc.log		跟踪inode
+tail -F abc.log		跟踪文件名
+
+查看命令所在位置：which
+常用命令：cd，pwd
+
+2、创建（touch，mkdir）
+创建文件：若目标不存在，则创建新文件；若目标存在，则更新原文件时间。
+创建目录：mkdir -p，递归创建目录。若目标不存在，则创建新目录；若目标存在，则不能创建。
+
+
+3、删除（rm）
+删除文件：rm。
+删除目录：rm -rf,递归删除目录内部的内容。
+
+
+4、复制（cp）
+复制文件：若目标不存在，则创建新文件；若目标存在且为文件，则覆盖原文件；若目标存在且为目录，则复制到目标目录内部。
+复制目录：cp -r，递归复制目录内部的内容。若目标不存在，则创建目标目录，并把源目录内容复制到新建的目标目录中；若目标存在且为目录，则将原目录复制到目标内部。若目标存在且为文件，则不可以进行复制操作。
+
+
+5、移动（mv）
+移动文件：若目标不存在，则重命名原文件；若目标存在且为文件，则覆盖原文件；若目标存在且为目录，则移动到目标目录内部。
+移动目录：若目标不存在，则重命名原目录；若目标存在且为目录，则将原目录移动到目标内部。若目标存在且为文件，则不可以进行移动操作。
+
+
+6、创建链接：
+创建软链接：ln -s 绝对路径 链接名。文件和目录都可以创建软链接。软链接保存的是文件的绝对路径。
+创建硬链接：ln 路径 链接名。硬链接和cp不同，不是复制，而是指向文件的一个引用。只有文件才可以创建硬链接。
+
+
+7、查找文件
+
+按文件名：find /root -name "hell*"
+按文件大小：find /root -size +2k -size -10k
+按文件类型：find /root -type f/d/l/b/c/s/p
+
+按文件中包含的内容：grep -r "hello" /root
+
+
+8、修改权限（chmod）
+普通模式：chmod [u|g|o|a] [+|-|=] [r|w|x] 文件名
+
+数字模式：chmod [1-7|1-7|1-7] 文件名
+
+
+9、修改所有者（chown）和所属组（chgrp）
+chown 所有者:所属组 文件名 -R
+chgrp 所属组 文件名
+
+
+
+5、防火墙
+
+service iptables status
+service iptables start
+service iptables stop
+
+chkconfig iptables --list
+chkconfig iptables on
+chkconfig iptables off
+
+
+6、pstree
+pstree 查看进程树
+
+7、set
+set 查看所有系统变量
+
+8、文本处理工具：cut，sed，awk
+
+
+

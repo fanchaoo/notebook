@@ -1,0 +1,6 @@
+{
+  "plugins": [
+    "toggle-chapters"
+  ],
+  "ignores": ["node_modules", "_book", ".DS_Store", "文档"]
+}

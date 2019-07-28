@@ -1,0 +1,28 @@
+import java.util.Arrays;
+
+public class Main {
+
+	static int count;
+
+	public static void main(String args[]) {
+
+		f(5, 2, 0, 0);
+		System.out.println(count);
+
+	}
+
+	public static void f(int n, int m, int cur, int step) {
+
+		if (step == n || cur >= m) {
+			if (cur == m) {
+				count++;
+			}
+			return;
+		}
+
+		for (int i = 0; i <= 1; i++) {
+			f(n, m, cur + i, step + 1);
+		}
+	}
+
+}

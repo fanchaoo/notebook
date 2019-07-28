@@ -1,0 +1,154 @@
+﻿1、CSS=选择器+属性
+
+2、盒模型：
+
+五个属性：width，height，padding，border，margin。
+width和height是内容的宽高。盒子的真实宽高为：width+padding+border。
+若想边框内大小不变，则加width就要减padding，减width就要加padding。
+继承宽度的盒子，增加左右padding不会撑大盒子。
+
+background-color在padding里也生效。
+用下边属性层叠上边属性：{padding:20px;padding-left:30px;}
+有些标签，自带默认的padding，比如<li>。
+
+行高可以撑起盒子的高度。
+所有文字的行都有行高，padding不是作用在文字上的，而是作用在行高上的。
+
+border三要素：宽度width，样式style，颜色color。
+用边框，画实心三角和实心圆。
+.circle{
+	width: 0;
+	height: 0;
+	border: 50px solid red;
+	border-radius: 50px;
+}
+.triangle{
+	width: 0;
+	height: 0;
+	border: 50px solid white;
+	border-bottom-color: red;
+}
+
+标准流中，竖直方向的margin有塌陷现象，以较大的为准；非标准流不会。
+margin描述的是兄弟之间的关系，父子之间要善用父亲的padding，而不是儿子的margin(父亲无边框时，儿子的margin会波及到父亲)。
+行内元素的上下padding会合并，上下margin不生效，所以都不建议使用。
+
+
+3、标准文档流：
+1、块级元素
+独占一行，不能与其他元素并排。
+如果不设置宽高，则宽度默认为父亲的100%，高度文字的高度。
+能设置宽高。
+
+2、行内元素
+与其他行内元素并排。
+如果不设置宽高，则宽高均为文字的宽高。
+不能设置宽高。
+
+3、行内元素会有空白折叠现象(多个空白字符会合并成一个)；
+<img src=""/><img src=""/>(图片之间会有空隙)
+4、(文字和图片)高矮不齐，底边对齐
+5、脱离标准文档流的三种方式：浮动，绝对定位，固定定位
+
+
+
+
+
+
+
+
+
+
+20、font相关
+
+页面的文本默认为16px，行高为18px。
+
+{font-famliy:"Times New Roman","Microsoft YaHei","SimSun";},
+写时先写英文字体，再写中文字体。中文匹配不上英文字体时，会自动向后匹配。
+
+font:16px/26px "Times New Roman","Microsoft YaHei","SimSun";
+
+font属性至少要有字号和字体。
+
+行高可以用百分比，表示字号的百分之多少。也可以用浮点数，表示字号的多少倍。
+
+21、a标签相关
+
+关于盒子的属性，要卸载a里；关于背景色，文本相关的属性，要写在伪类里。
+
+a标签不继承关于字体的属性，但会继承line-height，text-align。
+
+
+22、background相关
+
+background-color，三种颜色表示法。
+background-color:red;
+background-color:#ff0000;
+background-color:rgb(255,255,255);
+
+没有height或width或padding的盒子，背景色不生效。
+
+background-image，背景图片默认平铺。
+background-image:url(avatar.jpg);
+
+background-repeat，背景图片重复；有4个值，repeat,no-repeat,repeat-x,repeat-y。
+
+background-position，背景定位。2种表示法，单词表示，像素表示。
+单词表示：background-position: 描述左右的词儿  描述上下的词儿;
+描述左右的词儿： left、 center、right
+描述上下的词儿： top 、center、bottom
+常用在：大背景图居中，通栏banner，雪碧图。
+
+background-attachment，背景不随滚动条滚动。
+
+背景图片若设置了no-repeat，则默认从左上角开始显示。
+
+
+31、
+浮动，从内容的4个顶点开始偏移；
+绝对定位，从边框的内顶点开始偏移。
+
+
+
+
+32、小标签
+
+倾斜：<i>,<em>
+删除线：<s>,<del>
+下划线:<u>,<ins>
+
+
+
+
+33、关于宽度
+
+若一个盒子给了浮动，绝对定位，或inline-block，则宽度默认和内容一样宽。
+
+inline-block的盒子，左右之间会有一些空白缝隙，可以通过浮动来清除(或者设置font-size:0)。
+
+
+
+35、显示与隐藏
+
+display:block;		display:none;
+
+visibility:visibel;	visibility:hidden;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
