@@ -17,7 +17,7 @@
 通过RESTful实现时，可以通过前台表单的_method参数，和后台配置HiddenHttpMethodFilter过滤器，
 实现将POST方法转为PUT或DELETE方法。
 
-当配置DispatcherServlet的映射utl为“/”时，可以配置default-servlet-handler使其不拦截静态资源。
+当配置DispatcherServlet的映射url为“/”时，可以配置default-servlet-handler使其不拦截静态资源。
 
 前端传过来的字段都是字符串，springmvc有相应的格式转换器，将字符串转换为对应类型或对象。
 

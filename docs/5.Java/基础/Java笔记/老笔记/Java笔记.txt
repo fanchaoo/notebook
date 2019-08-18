@@ -1,0 +1,28 @@
+1、System.out.println("2+3="+2+3);
+运行结果为：2+3=23
+原因：字符串在靠前位置，后面的“+”默认为字符串连接
+
+
+2、System.out.println(1.2-1.1);
+运行结果为：0.0999999987
+原因：浮点数计算有误差
+
+
+3、double b = 2.2;
+   int a = (int)b;
+运行完成后，b的值并未改变
+
+singleton和applicationcontext一样吗？？？
+
+
+
+
+
+
+1、IOC，AOP，数据访问，事务支持，MVC
+
+2、IOC容器其实就是ApplicationContext。
+DI，依赖注入，将某个对象依赖的对象注入进去。
+通过IOC实现DI，完成对象的创建，装配，销毁，可以指定对象的init-method，destroy-method。
+
+3、AOP就是面向切面编程，完成业务逻辑与非业务逻辑的分离，非业务逻辑如日志，事务，安全。

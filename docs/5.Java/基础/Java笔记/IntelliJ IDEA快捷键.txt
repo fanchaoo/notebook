@@ -1,0 +1,16 @@
+
+ctrl+j：提示有哪些快捷键
+ctrl+n：打开某个类
+ctrl+f：查找文本
+ctrl+x：删除行
+ctrl+d：复制行
+ctrl+h：显示类的体系结构
+
+alt+anter：自动导包，自动补全
+alt+左右箭头：切换文件
+
+shitf+f6：重命名
+
+ctrl+shift+enter：开启新一行
+ctrl+alt+i：格式化代码
+alt+shift+上下箭头：上下移动行

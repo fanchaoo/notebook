@@ -30,6 +30,12 @@ def get_relative_name(root_dir, dir):
     return dir[len(root_dir) + index:]
 
 
+def remove_suffix_md(file_name):
+    index = str(file_name).index(".md")
+
+    return file_name[:index]
+
+
 def generate(root_dir, dir, lst, level):
     if os.path.isdir(dir):
 
@@ -38,11 +44,17 @@ def generate(root_dir, dir, lst, level):
 
         generate_readme_file(dir, short_dir_name)
 
-        left = level * "  " + "- " + "[" + short_dir_name + "]"
+        if level == 0:
+            left = level * "  " + "- " + "[**" + short_dir_name + "**]"
+        else:
+            left = level * "  " + "- " + "[" + short_dir_name + "]"
+        
         right = "(" + get_path(relative_name, "") + "README.md" + ")"
         lst.append(left + right)
 
-        for sub_dir in os.listdir(dir):
+        dirs = os.listdir(dir)
+        dirs.sort()
+        for sub_dir in dirs:
             generate(root_dir, get_path(dir, sub_dir), lst, level + 1)
     else:
         if str(dir).endswith("README.md"):
@@ -52,7 +64,7 @@ def generate(root_dir, dir, lst, level):
 
         short_dir_name = get_short_dir_name(dir)
         relative_name = get_relative_name(root_dir, dir)
-        left = level * "  " + "* " + "[" + short_dir_name + "]"
+        left = level * "  " + "* " + "[" + remove_suffix_md(short_dir_name) + "]"
         right = "(" + relative_name + ")"
         lst.append(left + right)
 
@@ -66,23 +78,15 @@ def generate_readme_file(dir, short_dir_name):
 
 
 def main(root_dir):
-    book_json_file_name = root_dir + "book.json"
-    book_json_file_content = read_text_file(book_json_file_name)
-    book_json = json.loads(book_json_file_content)
-    ignores = book_json["ignores"]
-    print("忽略的文件夹：", ignores)
-
     final_dirs = []
     file_names = os.listdir(root_dir)
     for name in file_names:
-        if name in ignores:
-            continue
 
         full_name = root_dir + name
         if not os.path.isdir(full_name):
             continue
         final_dirs.append(full_name)
-    
+
     final_dirs.sort()
     print("需要处理的文件夹", final_dirs)
 
