@@ -16,6 +16,14 @@
 
 网页的布局，其实就是摆放一个个矩形盒子，把这些盒子摆放在合适的位置。竖着摆放，默认标准流就行；横着摆放，就用浮动；任意摆放，就用定位。
 
+reset.css：https://meyerweb.com/eric/tools/css/reset/
+
+注意事项：
+
+* 什么时候设置padding，什么时候设置margin
+
+* 什么时候设置父元素的padding，什么时候设置子元素的margin
+
 
 ## border
 
@@ -51,11 +59,13 @@ margin不会影响盒子可视区域的大小，但是会影响盒子占地大�
 
 **相邻**兄弟元素之间，垂直方向的margin会重叠，最终会取最大值
 
-如果父子元素的垂直外边距相邻了，则子元素的外边距会设置给父元素
+在标准流中，如果父子元素的垂直方向外边界重叠了，则子元素的外边距会设置给父元素，可以通过`box.before{content:"";display:table;}`来解决父子边界重叠问题
 
 水平方向的margin不会重叠
 
 浏览器会给一些元素加一些默认的margin或padding，一般开发都要先去掉浏览器默认样式
+
+当设置了固定宽高时，padding就不能随意设置了，因为会撑开可视框；当宽高为auto时，可以设置padding，让元素自动调整宽高
 
 
 ## 行内元素
@@ -203,6 +213,17 @@ BFC全称Block Formatting Context，块格式化上下文，是元素的一个�
 
 高度塌陷问题解决后，父元素的高度即为被子元素撑开的高度，而不是0
 
+
+## 解决父子边界重叠和清除浮动
+
+```
+.clearfix:before,
+.clearfix:after{
+	content: "";
+	display: table;
+	clear: both;
+}
+```
 
 ## PS
 
