@@ -15,9 +15,9 @@
 
 ## 注意
 
-* 某个属性的默认值是啥，浏览器的默认效果是啥
+* 分门别类地去记忆属性，要知道属性的**默认值**和**继承性**
 
-* 某个属性的值是否会被继承
+* 要知道每个属性都是用来做什么的，随着属性值的不同，要能在脑海里有一个动态的绘制过程，要知道某些属性能用来做哪些常见布局或常见效果
 
 * 数字类型的属性，要考虑属性值能不能是负值
 
@@ -36,6 +36,9 @@ margin,padding: 0
 width,height是相对于父元素的width和height
 margin,padding是相对于父元素的width，而不是对应的margin,padding
 
+## 一些概念
+
+CSS规定的并不是属性，而是行为（behavior），DOM里的每个元素都可以看成是一个独立的物体，按照CSS规定的方式运动，最后稳定下来的结果就是最终布局的结果
 
 
 # 标准流与盒模型
@@ -324,7 +327,7 @@ position属性需要配合top，bottom，left，right属性使用
 
 * 开启相对定位的元素，不会脱离标准流，不会改变元素是块元素还是行内元素的性质
 
-* 相对定位会使元素层级提高，可能会覆盖其它层级低的元素
+* 相对定位会使元素层级提高，可能会覆盖其它层级低的元素（相对定位提升一层，浮动提升半层）
 
 
 ## 绝对定位
@@ -371,6 +374,8 @@ position属性需要配合top，bottom，left，right属性使用
 
 ## 如何出现...省略号
 
+前提：宽度不能是被内容撑开的
+
 ```
 .box{
 	width: 100px;
@@ -398,9 +403,11 @@ position属性需要配合top，bottom，left，right属性使用
 
 ## background-image
 
-* 背景图片，默认以“图片原始大小”，从元素的左上角（边框内部）开始repeat展示
+* 背景图片，默认以“图片原始大小”，从元素的左上角（padding外边缘）开始repeat绘制，向外截止到border外边缘
 
 * 背景图片和背景色可以同时设置，背景图片会在背景色上面展示
+
+* 背景图片可以设置为**渐变**，比如线性渐变（linear-gradient）或径向渐变（radial-gradient）
 
 ## background-repeat
 
@@ -435,6 +442,21 @@ https://www.w3school.com.cn/cssref/pr_background-position.asp
 
 当设置为fixed时，background-position是相对于浏览器窗口定位的，常用语body的固定大背景图
 
+## background-size
+
+设置背景图片的大小，通过像素或百分比（相对于盒子宽高）
+
+`background-size: 100%`表示宽度100%，高度auto
+
+`background-size: 100% 100%`表示宽高都为100%，可能会压缩图片大小
+
+## background-origin
+
+规定背景图片的定位区域：padding-box，border-box，content-box
+
+## background-clip
+
+规定背景的绘制区域：border-box，padding-box，content-box
 
 ## background
 
@@ -461,12 +483,62 @@ background的属性值，没有顺序要求，没有数量要求，不写的样�
 
 margin只影响盒子边界，不影响盒子位置（不同于left，top）
 
+## 禁止系统滚动条
+
+```
+html,body{
+	height: 100%;
+	overflow: hidden;
+}
+```
 
 
 
+# CSS3
+
+## text-shadow
+
+默认值：none，不继承
+
+文本阴影，可以设置阴影偏移的的xy坐标，阴影颜色，模糊程度
+
+## box-shadow
+
+默认值：none，不继承
+
+盒子阴影，可以设置阴影偏移的xy坐标，阴影颜色，模糊程度，阴影大小，内阴影或外阴影
+
+## resize
+
+默认值：none，不继承
+
+可以通过设置resize，使盒子可以被缩放
+
+## box-sizing
+
+默认值：content-box，不继承
+
+当设置为border-box时，添加padding会向盒子内部挤内容
 
 
+## border-radius
 
+默认值：0，不继承
+
+圆角边框，可以用来画圆或椭圆；
+
+可以制作圆形头像：
+
+```
+.box{
+	height: 200px;
+	width: 200px;
+	border-radius: 50%;
+	background-image: url(wb.jpeg);
+	background-repeat: no-repeat;
+	background-size: 200px;
+}
+```
 
 
 
