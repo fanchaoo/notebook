@@ -13,7 +13,7 @@ static属性，“引用”在方法区，“对象实体”在方法区还是�
 *************************************
 
 
-JDK：Java语言，JVM，Java API类库。
+JDK：JVM，Java API类库。
 JRE：JVM，Java API类库中的Java SE部分。
 
 JVM是一个用C++编写的虚拟机软件，用来运行Class字节码。JVM运行起来之后，在操作系统层面也不过是一个普通的进程。
