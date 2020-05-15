@@ -26,7 +26,7 @@
 
 ## 常用属性默认值
 
-width,height,left,right,top.bottom: auto
+width,height,left,right,top,bottom: auto
 
 margin,padding: 0
 
