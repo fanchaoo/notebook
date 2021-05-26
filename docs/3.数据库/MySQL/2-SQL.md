@@ -120,11 +120,9 @@ where后面的条件，和group by的having后面的条件，不同在于前者�
 * 执行顺序
 
 from <表名>
-on <条件>
-join <表名>
+join <表名> on <条件>
 where <条件>
-group by <属性名>
-having <条件>
+group by <属性名> having <条件>
 select <属性名>
 distinct <属性名>
 order by <属性名>
