@@ -1,0 +1,7 @@
+
+
+移除字段：
+
+db.getCollection("A表").update(
+{},{$unset:{"a":1}},{multi:true}
+)

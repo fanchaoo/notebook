@@ -1,3 +1,6 @@
+如果新生代一直内存不足会怎样？
+
+
 # 1.参数类型
 
 参数类型有**boolean型参数**和**key value型参数**。
@@ -24,9 +27,8 @@
 
 # 2.查看JVM参数
 
-查看当前的JVM参数：`java -XX:+PrintFlagsFinal -version | less`
 
-列出所有JVM进程：`jps -l`
+列出所有JVM进程：`jps -lvm`
 
 查看进程123的最大堆内存：`jinfo -flag MaxHeapSize 123`
 
@@ -76,13 +78,8 @@
 
 # 7.GC 
 
-## 垃圾收集器(3类，7个)
+## 垃圾收集器
 
-串行收集器：
-
-并行收集器：
-
-并发收集器：
 
 开启CMS：`-XX:+UseConcMarkSweepGC -XX:+UseParNewGC`
 

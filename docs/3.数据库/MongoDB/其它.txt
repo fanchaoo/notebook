@@ -1,0 +1,20 @@
+
+启动：
+
+/usr/local/mongodb/bin/mongod -f /etc/mongod.conf
+
+
+移除排序限制：
+
+db.adminCommand({setParameter:1, internalQueryExecMaxBlockingSortBytes:335544320})
+
+
+导出：
+
+mongoexport -h localhost -d test -c log2 -f contextId,loginUser,uri,operation,parameter,result,executeTime,createTime --type=csv -o /Users/fanchao/Downloads/log.csv
+
+load data local infile '/Users/fanchao/Downloads/log.csv'
+into table `log_copy`
+fields terminated by ',' optionally enclosed by '"'
+lines terminated by '\n'
+ignore 1 lines;

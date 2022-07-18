@@ -1,0 +1,17 @@
+db.log.remove({'loginUser':null})
+
+db.log.remove({'loginUser.userId':15})
+
+db.getCollection('operate_log').remove(
+{"uri":{"$in":[
+    "/system/saveOperateLog",
+    "/system/saveRequestMapping",
+    "/config/getConfigDetail",
+    "/config/getOnLaunchBgm",
+    "/song/listeningSong",
+    "/login/checkLoginToken"
+    ]}}
+)
+
+
+131022

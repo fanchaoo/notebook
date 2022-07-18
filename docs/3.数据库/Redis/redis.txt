@@ -1,0 +1,29 @@
+0.
+
+主从复制是异步复制，如果一个线程在master抢锁成功后，当锁信息还没有同步到slave时，master挂掉，则slave会变为master，而此时slave没有锁信息，所以有可能造成另外一线程也同时获得这一把锁，而造成数据不一致。
+
+
+1.
+
+`setnx和expire两个命令不是一个原子操作，如果setnx之后系统宕机，而因为没有设置过期时间，所以这个锁就一直不会被释放了`
+
+if setnx成功，则expire key
+
+del key
+
+2.
+
+`如果自己的锁已经过期，当自己释放锁的时候又不知道锁已经过期，则可能会误释放掉别人加的相同key的锁`
+
+set ex nx 10 true
+
+3.
+
+set ex nx 10 xxxxx
+
+if get(key)==xxxxx，则del key
+lua脚本，if redis.call('get', KEYS[1]) == ARGV[1] then return redis.call('del', KEYS[1]) else return 0 end
+
+4.
+
+锁的续约

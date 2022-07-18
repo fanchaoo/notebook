@@ -1,0 +1,14 @@
+
+创建索引：
+
+db.getCollection('xiudong_activity').createIndex({activityId:-1})
+
+删除索引：
+
+db.getCollection('xiudong_activity').dropIndex({activityId:1})
+
+
+explain：
+
+db.getCollection('xiudong_activity').find({msg:{$ne:"活动不存在"}}).sort({activityId:-1}).limit(100).explain( "executionStats" )
+
